@@ -1,0 +1,69 @@
+<form [formGroup]="tasksForm" class="tasks-form">
+  <div formArrayName="tasks" class="tasks-list">
+    @for (task of tasks.controls; track task; let i = $index) {
+    <div [formGroupName]="i" class="task-item">
+      <!-- Task Name -->
+      <div class="main-task">
+        <mat-form-field appearance="outline" class="task-field">
+          <input matInput placeholder="Task Name" formControlName="taskName" />
+        </mat-form-field>
+        <button
+          mat-mini-fab
+          color="warn"
+          (click)="removeTask(i)"
+          class="delete-task-btn"
+        >
+          <mat-icon>check</mat-icon>
+        </button>
+      </div>
+
+      <!-- Subtasks -->
+      <div formArrayName="subtasks" class="subtasks-list">
+        @for ( subtask of subtasks(i).controls; track subtask; let j = $index )
+        {
+        <div class="subtask-item">
+          <mat-icon class="arrow">arrow_right</mat-icon>
+
+          <mat-form-field appearance="outline" class="subtask-field">
+            <input matInput placeholder="Subtask Name" [formControlName]="j" />
+          </mat-form-field>
+          <button
+            mat-mini-fab
+            color="warn"
+            (click)="removeSubtask(i, j)"
+            class="delete-subtask-btn"
+          >
+            <mat-icon>check</mat-icon>
+          </button>
+        </div>
+        }
+        <!-- Add Subtask Button -->
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="addSubtask(i)"
+          class="add-subtask-btn"
+        >
+          Add Subtask
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+
+  <!-- Actions -->
+  <div class="form-actions">
+    <button mat-raised-button color="primary" (click)="loadSampleTasks()">
+      Load Sample Tasks
+    </button>
+    <button mat-raised-button color="accent" (click)="clearAllTasks()">
+      Clear Tasks
+    </button>
+    <button mat-raised-button color="primary" (click)="addTask()">
+      Add Task
+    </button>
+  </div>
+</form>
+
+<!-- Debug -->
+<pre>{{ tasksForm.value | json }}</pre>

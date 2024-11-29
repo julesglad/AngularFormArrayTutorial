@@ -1,0 +1,86 @@
+.tasks-form {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .task-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+
+      .main-task {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        .task-field {
+          flex: 3; // Takes up most of the space
+          // min-width: 0; // Prevents overflow
+        }
+
+        .delete-task-btn {
+          flex-shrink: 1; // Smaller space for the button
+          margin-left: 8px;
+          margin-top: 5px;
+        }
+      }
+
+      .subtasks-list {
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .subtask-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .arrow {
+            flex-shrink: 1;
+            margin-bottom: 20px;
+          }
+
+          .subtask-field {
+            flex: 1;
+          }
+
+          .delete-subtask-btn {
+            margin-left: auto;
+            margin-bottom: 28px;
+          }
+        }
+
+        .add-subtask-btn {
+          align-self: flex-start;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 12px;
+
+    button {
+      flex: 1;
+    }
+  }
+
+  .new-task-field {
+    width: 100%;
+  }
+}
